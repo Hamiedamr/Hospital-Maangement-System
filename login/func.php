@@ -68,9 +68,15 @@ define("home_path",'/hms/');
                 </script>';
                 
             }else{
-                echo "<script>alert('Something is wrong :(!')</script>";
-                echo mysqli_error($conn);
-                die();
+                echo '<script>
+                var r = confirm("Something is wrong :(!");
+                if (r == true) {
+                    window.location.replace("http://localhost:8080/hms/login/admin_panel.php");
+                  } else {
+                    window.location.replace("http://localhost:8080/hms/login/admin_panel.php");
+                  }
+                
+                </script>';
             }
             echo '<script>window.location.replace("http://localhost:8080/hms/login/admin_panel.php") </script>';
         }
