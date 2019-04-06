@@ -12,7 +12,7 @@ define("home_path",'/hms/');
         $rows = mysqli_num_rows($result);
         if($rows  == 1){
             $_SESSION['login_success'] = "Successfully Login!"; 
-            setcookie("admin",$username,time()+120,home_path);
+            setcookie("admin",$username,time()+300,home_path);
             header("Location:admin_panel.php");
         }
         else{
@@ -27,8 +27,6 @@ define("home_path",'/hms/');
         $last_name = filter_var($_POST['lastname'],FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
         $contact = preg_replace('/[^0-9]/', '', $_POST['contact']);
-        // var_dump($contact);
-        // die();
         $appointment = "";
         foreach($_POST['appointment'] as $value){
             $appointment = $value;

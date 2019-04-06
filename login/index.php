@@ -13,6 +13,7 @@ define("home_path",'/hms/');
     <title>Hospital Management System </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
  <!-- Latest compiled and minified CSS -->
+ <link rel="icon" href="img/icon.png" type="image/png"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
