@@ -1,5 +1,6 @@
 <?php
 session_start() ;
+define("home_path",'/hms/');
     $conn = mysqli_connect("localhost","root","","hmsdb");
     if(isset($_POST['login_submit'])):
         $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
@@ -10,7 +11,7 @@ session_start() ;
         $rows = mysqli_num_rows($result);
         if($rows  == 1){
             $_SESSION['login_success'] = "Successfully Login!"; 
-
+            setcookie("admin",$username,time()+120,home_path);
             header("Location:admin_panel.php");
         }
         else{

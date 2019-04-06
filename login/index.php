@@ -1,3 +1,10 @@
+<?php
+define("home_path",'/hms/');
+    if(isset($_COOKIE['admin'])){
+        header("location:".home_path."login/admin_panel.php");
+    }else {
+    
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,3 +73,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<?php
+
+                            }
+
+?>
