@@ -2,7 +2,8 @@
 session_start() ;
 define("home_path",'/hms/');
     $conn = mysqli_connect("localhost","root","","hmsdb");
-    if(isset($_POST['login_submit'])):
+    //login
+    if(isset($_POST['login_submit'])){
         $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
         $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
         $query = "select username,password from logintb where username='$username' and password = '$password'";
@@ -18,7 +19,64 @@ define("home_path",'/hms/');
             $_SESSION['login_error'] = "Invalid username or password"; 
             header("Location:index.php");
         }
-    endif
+
+    }
+    //Appointments
+    if(isset($_POST['patient_submit'])){
+        $first_name = filter_var($_POST['firstname'],FILTER_SANITIZE_STRING);
+        $last_name = filter_var($_POST['lastname'],FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+        $contact = preg_replace('/[^0-9]/', '', $_POST['contact']);
+        // var_dump($contact);
+        // die();
+        $appointment = "";
+        foreach($_POST['appointment'] as $value){
+            $appointment = $value;
+        }
+        if(empty($first_name)){
+            $_SESSION['fname_error'] = "Invalid first name";
+            header("location:admin_panel.php");
+        }
+        elseif(empty($last_name)){
+            $_SESSION['lname_error'] = "Invalid last name";
+            header("location:admin_panel.php");
+
+        }
+        elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+            $_SESSION['email_error'] = "Invalid email";
+            header("location:admin_panel.php");
+        }
+        elseif(strlen($contact) < 9){
+            $_SESSION['contact_error'] = "Invalid contact";
+            header("location:admin_panel.php");
+
+        }elseif(strlen($appointment) == 0){
+            $_SESSION['appointment_error'] = "Pick and appointment!";
+            header("location:admin_panel.php");
+
+        }else{
+            $query = "insert into patientstb (first_name,last_name,email,contact,appointment_id)  values('$first_name','$last_name','$email','$contact',$appointment)";
+            if(mysqli_query($conn,$query)){
+                echo '<script>
+                var r = confirm("Appointment has been added :)!");
+                if (r == true) {
+                    window.location.replace("http://localhost:8080/hms/login/admin_panel.php");
+                  } else {
+                    window.location.replace("http://localhost:8080/hms/login/admin_panel.php");
+                  }
+                
+                </script>';
+                
+            }else{
+                echo "<script>alert('Something is wrong :(!')</script>";
+                echo mysqli_error($conn);
+                die();
+            }
+            echo '<script>window.location.replace("http://localhost:8080/hms/login/admin_panel.php") </script>';
+        }
+        
+
+    }
 
 
 ?>

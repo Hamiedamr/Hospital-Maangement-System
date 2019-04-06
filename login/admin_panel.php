@@ -83,24 +83,58 @@ unset($_SESSION['login_success']);
 
             <div class="col-md-8">
             <div class="card">
-                <div class="card-body" style="background-color:#3498DB;color:#ffffff;"></div>
+                <div class="card-body" style="background-color:#3498DB;color:#ffffff;">
+                <h3>
+                    Book an Appointment
+                </h3>
+                </div>
                 <div class="card-body">
                     <form action="func.php" class="form-group" method="post">
                         <label for="">First Name</label>
+                        <?php
+                            if(isset($_SESSION['fname_error'])){
+                                echo"<div class='alert alert-danger'>".$_SESSION['fname_error']."</div>";
+                            }
+                            unset($_SESSION['fname_error']);
+                        ?>
                         <input name="firstname" type="text" class="form-control">
                         <label for="">Last Name</label>
+                        <?php
+                            if(isset($_SESSION['lname_error'])){
+                                echo"<div class='alert alert-danger'>".$_SESSION['lname_error']."</div>"; 
+                            }
+                            unset($_SESSION['lname_error']);
+                        ?>
                         <input name="lastname" type="text" class="form-control">
                         <label for="">Email</label>
+                        <?php
+                            if(isset($_SESSION['email_error'])){
+                                echo"<div class='alert alert-danger'>".$_SESSION['email_error']."</div>";
+                            }
+                            unset($_SESSION['email_error']);
+                        ?>
                         <input name="email" type="email" class="form-control">
                         <label for="">Contact</label>
+                        <?php
+                            if(isset($_SESSION['contact_error'])){
+                                echo"<div class='alert alert-danger'>".$_SESSION['contact_error']."</div>";
+                            }
+                            unset($_SESSION['contact_error']);
+                        ?>
                         <input name="contact" type="text" class="form-control">
                         <label for="">Doctor Appointment</label>
+                        <?php
+                            if(isset($_SESSION['appointement_error'])){
+                                echo"<div class='alert alert-danger'>".$_SESSION['appointement_error']."</div>";
+                            }
+                            unset($_SESSION['appointement_error']);
+                        ?>
                        <select name="appointment[]" id="" class="form-control">
                       <?php for($i = 0; $i < count($data); $i++){?>
                         <option value=<?=$data[$i]['appointment_id']?>>Dr/<?= $data[$i]['doctorname']." ".$data[$i]['appointment']?></option>
                       <?php }?>
                        </select>
-                       <button type="submit" class="btn btn-primary form-control" name="patient_submit" id="ab1">Enter Patient</button>
+                       <button type="submit" class="btn btn-primary form-control" name="patient_submit" id="ab1">Enter Appointment</button>
 
                     </form>
                 
