@@ -5,5 +5,5 @@
      height:300px;
 }
 .active{
-    background-color:#3498DB;
+    background-color:#3498DB !important;
 }

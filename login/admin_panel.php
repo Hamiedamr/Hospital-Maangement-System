@@ -46,21 +46,29 @@ unset($_SESSION['login_success']);
         <div class="row">
             <div class="col-md-1">
             </div>
-            <div class="col-md-2">
-                <div class="list-group">
-                    <a id="patient" href="#content" class="list-group-item active" style=";
-                ">Patients</a>
-                    <a id="patient_details" href="#content" class="list-group-item ">Patient Details</a>
-                    <a id="payment" href="#content" class="list-group-item ">Payment/Chechout</a>
+            <div class="col-md-2 pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+                    <div class="list-group">
+                        <a id="patient" href="#content" class="list-group-item active" style=";
+                    ">Patients</a>
+                        <a id="patient_details" href="#content" class="list-group-item ">Patient Details</a>
+                        <a id="payment" href="#content" class="list-group-item ">Payment/Chechout</a>
 
 
+                    </div>
+                    <div class="list-group">
+                        <a  id="staff" href="#content" class="list-group-item ">Staff</a>
+                        <a id="staff_details" href="#content" class="list-group-item ">Staff Details</a>
+                        <a id="add_new_staff" href="#content" class="list-group-item ">ِAdd New Staff</a>
+
+                    </div>
                 </div>
-                <div class="list-group">
-                    <a  id="staff" href="#content" class="list-group-item ">Staff</a>
-                    <a id="staff_details" href="#content" class="list-group-item ">Staff Details</a>
-                    <a id="add_new_staff" href="#content" class="list-group-item ">ِAdd New Staff</a>
-
-                </div>
+                <nav class="navbar navbar-dark bg-primary active" >
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" style="color:#ffffff !important;">
+                    <span class="fa fa-align-justify" style="color:#ffffff !important;"></span>
+                    <span >Menu</span>
+                    </button>
+                </nav>
             </div>
 
             <div id="content" class="col-md-8">
