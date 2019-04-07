@@ -3,18 +3,9 @@ define("home_path",'/hms/');
     if(isset($_COOKIE['admin'])){
         header("location:".home_path."login/admin_panel.php");
     }else {
-    
+        include("../header.php");
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hospital Management System </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- <!-- Latest compiled and minified CSS -->
- <link rel="icon" href="img/icon.png" type="image/png"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 
 </head>
 <body style="background-image:url('img/background.jpg'); background-repeat:no-repeat; background-size: cover; background-opacity:0.5">

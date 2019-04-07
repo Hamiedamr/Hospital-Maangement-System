@@ -4,7 +4,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
     if (isset($_GET['name'])) {
         $query = "select appointment_id,doctorname,appointment from doctorstb join doctor_appointmentstb on appointment_id = doctor_appointmentstb.id";
         $result = mysqli_query($conn, $query);
-        $data =  array();
+        $data = array();
         if (mysqli_num_rows($result) > 0) {
             //fetch assco like stack so we get data from it using loop
             while ($data[] = mysqli_fetch_assoc($result)) {
@@ -79,8 +79,8 @@ if (isset($_SESSION['appointement_error'])) {
                 </div>
             </div>
             <?php
-}else if($_GET['name'] == "payment"){
-?>
+} else if ($_GET['name'] == "payment") {
+            ?>
     <div class="card">
     <div class="card-body" style="background-color:#3498DB;color:#ffffff;">
                 <h3>
@@ -90,25 +90,25 @@ if (isset($_SESSION['appointement_error'])) {
     </div>
 
 <?php
-}else if($_GET['name'] == "patient_details"){
+} else if ($_GET['name'] == "patient_details") {
 
-    $query = "select patientstb.contact,patientstb.id,first_name,last_name,doctorname,appointment from patientstb join doctor_appointmentstb on patientstb.appointment_id = doctor_appointmentstb.id join doctorstb on doctorstb.appointment_id = doctor_appointmentstb.id";
+            $query = "select patientstb.contact,patientstb.id,first_name,last_name,doctorname,appointment from patientstb join doctor_appointmentstb on patientstb.appointment_id = doctor_appointmentstb.id join doctorstb on doctorstb.appointment_id = doctor_appointmentstb.id";
 
-        $result = mysqli_query($conn, $query);
-        // die(var_dump($result));
-        $data =  array();
-        if (mysqli_num_rows($result) > 0) {
-            //fetch assoc like stack so we get data from it using loop
-            while ($data[] = mysqli_fetch_assoc($result)) {
+            $result = mysqli_query($conn, $query);
+            // die(var_dump($result));
+            $data = array();
+            if (mysqli_num_rows($result) > 0) {
+                //fetch assoc like stack so we get data from it using loop
+                while ($data[] = mysqli_fetch_assoc($result)) {
 
-            }
-            array_pop($data);
+                }
+                array_pop($data);
 //             echo"<pre>";var_dump($data);echo"</pre>";
-//  die();
-        } else {
-            die("<script>alert('Error in Datbase! :(')</script>");
-        }
-?>
+                //  die();
+            } else {
+                echo ("<script>alert('There is no appointements :(')</script>");
+            }
+            ?>
     <div class="card">
     <div class="card-body" style="background-color:#3498DB;color:#ffffff;">
                 <h3>
@@ -118,7 +118,7 @@ if (isset($_SESSION['appointement_error'])) {
     <div class="card-body">
             <table class="table">
         <thead>
-       
+
             <tr>
             <th scope="col">#</th>
             <th scope="col">First Name</th>
@@ -126,18 +126,25 @@ if (isset($_SESSION['appointement_error'])) {
             <th scope="col">Contact</th>
             <th scope="col">Appointment</th>
             <th scope="col">Doctor Name</th>
+            <th scope="col">Delete</th>
             </tr>
-      
+
         </thead>
         <tbody>
         <?php for ($i = 0; $i < count($data); $i++) {?>
             <tr>
-            <th scope="row"><?= $data[$i]['id']?></th>
-            <td><?= $data[$i]['first_name']?></td>
-            <td><?= $data[$i]['last_name']?></td>
-            <td><?= $data[$i]['contact']?></td>
-            <td><?= $data[$i]['appointment']?></td>
-            <td><?= $data[$i]['doctorname']?></td>
+            <td id="id" scope="row"><?=$i + 1?></td>
+            <td scope="row"><?=$data[$i]['first_name']?></td>
+            <td scope="row"><?=$data[$i]['last_name']?></td>
+            <td scope="row"><?=$data[$i]['contact']?></td>
+            <td scope="row"><?=$data[$i]['appointment']?></td>
+            <td scope="row"><?=$data[$i]['doctorname']?></td>
+            <td scope="row">
+             <form style="display:inline" >
+                         <input type="hidden" name="id" value="<?=$data[$i]['id']?>">
+                <button onclick="my_func(event);" type="submit"><i class="fas fa-trash" ></i></button>
+            </form>
+            </td>
             </tr>
     <?php }?>
         </tbody>
@@ -146,9 +153,38 @@ if (isset($_SESSION['appointement_error'])) {
 </div>
 
     <?php
+} elseif ($_GET['name'] == "staff") {
+            ?>
+ <div class="card">
+    <div class="card-body" style="background-color:#3498DB;color:#ffffff;">
+                <h3>
+                    Staff
+                </h3>
+    </div>
+    </div>
+<?php
+} elseif ($_GET['name'] == "add_new_staff") {
+            ?> <div class="card">
+<div class="card-body" style="background-color:#3498DB;color:#ffffff;">
+            <h3>
+                Add New Staff
+            </h3>
+</div>
+</div>
+ <?php
+} else if ($_GET['name'] == "staff_details") {
+            ?>
+   <div class="card">
+   <div class="card-body" style="background-color:#3498DB;color:#ffffff;">
+            <h3>
+                Staff Details
+            </h3>
+</div>
+</div>
+   <?php
 }
 
-    }
+    } 
 }
 
 ?>

@@ -21,29 +21,9 @@ $query = "select appointment_id,doctorname,appointment from doctorstb join docto
 if (isset($_COOKIE['admin'])) {
     ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hospital Management System </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- <!-- Latest compiled and minified CSS -->
- <link rel="icon" href="img/icon.png" " type="image/png"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<?php include("../header.php");?>
+<link rel="stylesheet" href="css/admin_panel.css">
 
-    <style>
-    #main{
-        background-image:url("img/3.jpg");
-        background-repeat:no-repeat;
-        background-size:cover;
-         height:300px;
-    }
-    .active{
-        background-color:#3498DB;
-    }
-
-    </style>
 
 </head>
 <body>
@@ -79,7 +59,6 @@ unset($_SESSION['login_success']);
                     <a  id="staff" href="#content" class="list-group-item ">Staff</a>
                     <a id="staff_details" href="#content" class="list-group-item ">Staff Details</a>
                     <a id="add_new_staff" href="#content" class="list-group-item ">ِAdd New Staff</a>
-                    <a id="remove_staff" href="#content" class="list-group-item ">Remove Staff Member</a>
 
                 </div>
             </div>
@@ -176,107 +155,7 @@ if (isset($_SESSION['appointement_error'])) {
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-                        <script>
-
-                                $("#patient").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                    $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"patient"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-                                        }
-                                    });
-                                });
-                                $("#payment").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"payment"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-                                $("#staff").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"staff"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-                                $("#add_new_staff").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"add_new_staff"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-                                $("#staff_details").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"staff_details"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-                                $("#patient_details").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"patient_details"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-                                $("#remove_staff").click(function(){
-                                    $("a").removeClass('active');
-                                    $(this).addClass('active');
-                                      $.ajax({
-                                        type:"GET",
-                                        url:"ajax.php",
-                                        data:{name:"remove_staff"},
-                                        success:function(data){
-                                              $("#content").empty();
-                                            $("#content").append(data);
-
-                                        }
-                                    });
-                                });
-
-                        </script>
+ <script src="js/admin_panel.js"></script>
 </body>
 </html>
 
