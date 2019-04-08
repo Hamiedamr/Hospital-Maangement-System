@@ -1,2 +1,10 @@
-title:Hospital Management System
-theme: jekyll-theme-time-machine
+title: Hospital Management System
+author: Hamiedamr
+email: hamedamr95@hotmail.com
+description: > # this means to ignore newlines until "baseurl:"
+ Hospital Management System
+# social links
+facebook_username: hamedamr95@hotmail.com
+github_username:  Hamiedamr
+
+show_excerpts: true # set to false to remove excerpts on the homepagetheme: jekyll-theme-time-machine
