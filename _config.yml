@@ -6,7 +6,5 @@ description: > # this means to ignore newlines until "baseurl:"
 # social links
 facebook_username: hamedamr95@hotmail.com
 github_username:  Hamiedamr
-
 show_excerpts: true # set to false to remove excerpts on the homepagetheme: jekyll-theme-time-machine
-
 theme: jekyll-theme-cayman
