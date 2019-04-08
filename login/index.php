@@ -10,7 +10,7 @@ define("home_path",'/hms/');
 </head>
 <body style="background-image:url('img/background.jpg'); background-repeat:no-repeat; background-size: cover; background-opacity:0.5">
 
-        <div class="container" style="margin-top:5rem;">
+        <div class="container" style="margin-top:5rem;"
             <div class="card" style="width: 18rem; margin:auto;">
             <img class="card-img-top" src="img/hospital.jpg" alt="Card image cap">
 
