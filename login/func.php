@@ -28,8 +28,12 @@ define("home_path",'/hms/');
         $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
         $contact = preg_replace('/[^0-9]/', '', $_POST['contact']);
         $appointment = "";
+        $department="";
         foreach($_POST['appointment'] as $value){
             $appointment = $value;
+        }
+        foreach($_POST['department'] as $value){
+            $department = $value;
         }
         if(empty($first_name)){
             $_SESSION['fname_error'] = "Invalid first name";
@@ -49,11 +53,15 @@ define("home_path",'/hms/');
             header("location:admin_panel.php");
 
         }elseif(strlen($appointment) == 0){
-            $_SESSION['appointment_error'] = "Pick and appointment!";
+            $_SESSION['appointment_error'] = "Pick an appointment!";
+            header("location:admin_panel.php");
+
+        }elseif(strlen($department) == 0){
+            $_SESSION['department_error'] = "Pick an department!";
             header("location:admin_panel.php");
 
         }else{
-            $query = "insert into patientstb (first_name,last_name,email,contact,appointment_id)  values('$first_name','$last_name','$email','$contact',$appointment)";
+            $query = "insert into patientstb (first_name,last_name,email,contact,appointment_id,doctor_department)  values('$first_name','$last_name','$email','$contact',$appointment,'$department')";
             if(mysqli_query($conn,$query)){
                 echo '<script>
                 var r = confirm("Appointment has been added :)!");

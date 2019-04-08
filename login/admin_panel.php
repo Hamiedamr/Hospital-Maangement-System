@@ -2,19 +2,9 @@
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "hmsdb");
 $query = "select appointment_id,doctorname,appointment from doctorstb join doctor_appointmentstb on appointment_id = doctor_appointmentstb.id";
-        $result = mysqli_query($conn, $query);
-        $data =  array();
-        if (mysqli_num_rows($result) > 0) {
-            //fetch assco like stack so we get data from it using loop
-            while ($data[] = mysqli_fetch_assoc($result)) {
-
-            }
-            array_pop($data);
-            mysqli_free_result($result);
-
-        } else {
-            die("<script>alert('Error in Datbase! :(</div>>')");
-        }
+        $result = mysqli_query($conn, $query);        
+        $query = "select * from departmentstb";
+        $depart = mysqli_query($conn,$query);
 
 ?>
 <?php
@@ -79,7 +69,7 @@ unset($_SESSION['login_success']);
                 </h3>
                 </div>
                 <div class="card-body">
-                    <form action="func.php" class="form-group" method="post">
+                <form action="func.php" class="form-group" method="post">
                         <label for="">First Name</label>
                         <?php
 if (isset($_SESSION['fname_error'])) {
@@ -112,6 +102,26 @@ if (isset($_SESSION['contact_error'])) {
     unset($_SESSION['contact_error']);
     ?>
                         <input name="contact" type="text" class="form-control">
+                        <label for="">Department</label>
+                        <?php
+if (isset($_SESSION['department_error'])) {
+        echo "<div class='alert alert-danger'>" . $_SESSION['department_error'] . "</div>";
+    }
+    unset($_SESSION['department_error']);
+    ?>
+
+    <select name="department[]" id="departments" class="form-control">
+                      <?php 
+                                if(mysqli_num_rows($depart) > 0){
+                      
+                                    while($department = mysqli_fetch_assoc($depart)){
+                          
+                          ?>
+                        <option value=<?=$department['department_name']?>><?=$department['department_name']?></option>
+                      <?php }} else {
+                                 die("<script>alert('Error in Datbase! :(</div>>')");
+                         }?>
+                       </select>
                         <label for="">Doctor Appointment</label>
                         <?php
 if (isset($_SESSION['appointement_error'])) {
@@ -119,11 +129,18 @@ if (isset($_SESSION['appointement_error'])) {
     }
     unset($_SESSION['appointement_error']);
     ?>
-                       <select name="appointment[]" id="" class="form-control">
-                      <?php for ($i = 0; $i < count($data); $i++) {?>
-                        <option value=<?=$data[$i]['appointment_id']?>>Dr/<?=$data[$i]['doctorname'] . " " . $data[$i]['appointment']?></option>
-                      <?php }?>
+         <select name="appointment[]" id="appointments" class="form-control">
+                      <?php 
+                        if (mysqli_num_rows($result) > 0) {
+                      while ($appointment = mysqli_fetch_assoc($result)) {?>
+                        <option value=<?=$appointment['appointment_id']?>>Dr/<?=$appointment['doctorname'] . " " . $appointment[$i]['appointment']?></option>
+                      <?php } } else {
+            die("<script>alert('Error in Datbase! :(</div>>')");
+        }?>
                        </select>
+                      
+
+                  
                        <button type="submit" class="btn btn-primary form-control" name="patient_submit" >Enter Appointment</button>
 
                     </form>
