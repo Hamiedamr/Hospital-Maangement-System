@@ -1,14 +1,14 @@
 <?php
-define("home_path",'/hms/');
-
+session_start();
+$_SESSION['home'] =  "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
     if(isset($_COOKIE['admin'])){
-        header("location:".home_path."login/admin_panel.php");
+        header("location:".$_SESSION['home'] ."login/admin_panel.php");
     }else {
-        header("location:".home_path."login/index.php");
+        header("location:".$_SESSION['home'] ."login/index.php");
 
     }
-    // echo (var_dump($_COOKIE['admin']));
+   
 
 
 

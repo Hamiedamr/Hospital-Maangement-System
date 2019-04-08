@@ -1,7 +1,7 @@
 <?php
 define("home_path",'/hms/');
     if(isset($_COOKIE['admin'])){
-        header("location:".home_path."login/admin_panel.php");
+        header("location:". $_SESSION['home'] ."login/admin_panel.php");
     }else {
         include("../header.php");
 ?>
